@@ -5,9 +5,9 @@ const main = {
   cleanDir(path) {
     const deferred = Promise.defer();
 
-    const remove = function(file) {
+    const remove = function (file) {
       const myDeferred = Promise.defer();
-      const myHandler = function(err) {
+      const myHandler = function (err) {
         if (err) {
           myDeferred.reject(err);
         } else {

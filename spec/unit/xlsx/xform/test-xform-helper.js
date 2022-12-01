@@ -1,5 +1,5 @@
-const {PassThrough} = require('readable-stream');
-const {cloneDeep, each} = require('../../../utils/under-dash');
+const { PassThrough } = require('readable-stream');
+const { cloneDeep, each } = require('../../../utils/under-dash');
 const CompyXform = require('./compy-xform');
 
 const parseSax = verquire('utils/parse-sax');
@@ -7,7 +7,7 @@ const XmlStream = verquire('utils/xml-stream');
 const BooleanXform = verquire('xlsx/xform/simple/boolean-xform');
 
 function getExpectation(expectation, name) {
-  if (!expectation.hasOwnProperty(name)) {
+  if (!Object.prototype.hasOwnProperty.call(expectation, name)) {
     throw new Error(`Expectation missing required field: ${name}`);
   }
   return cloneDeep(expectation[name]);
@@ -51,7 +51,7 @@ const its = {
       }));
   },
 
-  'prepare-render': function(expectation) {
+  'prepare-render': function (expectation) {
     // when implementation details get in the way of testing the prepared result
     it('Prepare and Render to XML', () =>
       new Promise(resolve => {
@@ -79,7 +79,7 @@ const its = {
         };
         const result = `<compy><pre/>${getExpectation(
           expectation,
-          'xml'
+          'xml',
         )}<post/></compy>`;
 
         const xform = new CompyXform({
@@ -87,12 +87,12 @@ const its = {
           children: [
             {
               name: 'pre',
-              xform: new BooleanXform({tag: 'pre', attr: 'val'}),
+              xform: new BooleanXform({ tag: 'pre', attr: 'val' }),
             },
-            {name: 'child', xform: expectation.create()},
+            { name: 'child', xform: expectation.create() },
             {
               name: 'post',
-              xform: new BooleanXform({tag: 'post', attr: 'val'}),
+              xform: new BooleanXform({ tag: 'post', attr: 'val' }),
             },
           ],
         });
@@ -111,10 +111,10 @@ const its = {
       new Promise((resolve, reject) => {
         const xml = `<compy><pre/>${getExpectation(
           expectation,
-          'xml'
+          'xml',
         )}<post/></compy>`;
         const childXform = expectation.create();
-        const result = {pre: true};
+        const result = { pre: true };
         result[childXform.tag] = getExpectation(expectation, 'parsedModel');
         result.post = true;
         const xform = new CompyXform({
@@ -122,12 +122,12 @@ const its = {
           children: [
             {
               name: 'pre',
-              xform: new BooleanXform({tag: 'pre', attr: 'val'}),
+              xform: new BooleanXform({ tag: 'pre', attr: 'val' }),
             },
-            {name: childXform.tag, xform: childXform},
+            { name: childXform.tag, xform: childXform },
             {
               name: 'post',
-              xform: new BooleanXform({tag: 'post', attr: 'val'}),
+              xform: new BooleanXform({ tag: 'post', attr: 'val' }),
             },
           ],
         });

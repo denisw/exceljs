@@ -1,6 +1,6 @@
 const path = require('path');
 
-const {expect} = require('chai');
+const { expect } = require('chai');
 const testutils = require('../utils/index');
 
 const ExcelJS = verquire('exceljs');
@@ -37,7 +37,7 @@ describe('Worksheet', () => {
       };
 
       // number formula
-      ws.getCell('A2').value = {formula: 'A1', result: 7};
+      ws.getCell('A2').value = { formula: 'A1', result: 7 };
 
       // string formula
       ws.getCell('B2').value = {
@@ -46,7 +46,7 @@ describe('Worksheet', () => {
       };
 
       // date formula
-      ws.getCell('C2').value = {formula: 'D1', result: now};
+      ws.getCell('C2').value = { formula: 'D1', result: now };
 
       expect(ws.getCell('A1').value).to.equal(7);
       expect(ws.getCell('B1').value).to.equal('Hello, World!');
@@ -55,14 +55,14 @@ describe('Worksheet', () => {
       expect(ws.getCell('E1').value).to.equal('Hello, World!');
       expect(ws.getCell('F1').value.text).to.equal('www.google.com');
       expect(ws.getCell('F1').value.hyperlink).to.equal(
-        'http://www.google.com'
+        'http://www.google.com',
       );
 
       expect(ws.getCell('A2').value.formula).to.equal('A1');
       expect(ws.getCell('A2').value.result).to.equal(7);
 
       expect(ws.getCell('B2').value.formula).to.equal(
-        'CONCATENATE("Hello", ", ", "World!")'
+        'CONCATENATE("Hello", ", ", "World!")',
       );
       expect(ws.getCell('B2').value.result).to.equal('Hello, World!');
 
@@ -115,7 +115,7 @@ describe('Worksheet', () => {
       };
 
       // number formula
-      ws.getCell('A2').value = {formula: 'A1', result: 7};
+      ws.getCell('A2').value = { formula: 'A1', result: 7 };
 
       // string formula
       ws.getCell('B2').value = {
@@ -124,7 +124,7 @@ describe('Worksheet', () => {
       };
 
       // date formula
-      ws.getCell('C2').value = {formula: 'D1', result: new Date()};
+      ws.getCell('C2').value = { formula: 'D1', result: new Date() };
 
       expect(ws.getCell('A1').type).to.equal(ExcelJS.ValueType.Number);
       expect(ws.getCell('B1').type).to.equal(ExcelJS.ValueType.String);
@@ -142,9 +142,9 @@ describe('Worksheet', () => {
       const ws = wb.addWorksheet('blort');
 
       ws.columns = [
-        {key: 'id', width: 10},
-        {key: 'name', width: 32},
-        {key: 'dob', width: 10},
+        { key: 'id', width: 10 },
+        { key: 'name', width: 32 },
+        { key: 'dob', width: 10 },
       ];
 
       expect(ws.getColumn('id').number).to.equal(1);
@@ -168,9 +168,9 @@ describe('Worksheet', () => {
       const ws = wb.addWorksheet('blort');
 
       ws.columns = [
-        {header: 'Id', width: 10},
-        {header: 'Name', width: 32},
-        {header: 'D.O.B.', width: 10},
+        { header: 'Id', width: 10 },
+        { header: 'Name', width: 32 },
+        { header: 'D.O.B.', width: 10 },
       ];
 
       expect(ws.getCell('A1').value).to.equal('Id');
@@ -183,7 +183,7 @@ describe('Worksheet', () => {
       const ws = wb.addWorksheet('blort');
 
       // by defn
-      ws.getColumn(1).defn = {key: 'id', header: 'Id', width: 10};
+      ws.getColumn(1).defn = { key: 'id', header: 'Id', width: 10 };
 
       // by property
       ws.getColumn(2).key = 'name';
@@ -210,7 +210,7 @@ describe('Worksheet', () => {
       const ws = wb.addWorksheet('blort');
 
       // by defn
-      ws.getColumn('A').defn = {key: 'id', header: 'Id', width: 10};
+      ws.getColumn('A').defn = { key: 'id', header: 'Id', width: 10 };
 
       // by property
       ws.getColumn('B').key = 'name';
@@ -238,16 +238,16 @@ describe('Worksheet', () => {
 
       // add columns to define column keys
       ws.columns = [
-        {header: 'Id', key: 'id', width: 10},
-        {header: 'Name', key: 'name', width: 32},
-        {header: 'D.O.B.', key: 'dob', width: 10},
+        { header: 'Id', key: 'id', width: 10 },
+        { header: 'Name', key: 'name', width: 32 },
+        { header: 'D.O.B.', key: 'dob', width: 10 },
       ];
 
       const dateValue1 = new Date(1970, 1, 1);
       const dateValue2 = new Date(1965, 1, 7);
 
-      ws.addRow({id: 1, name: 'John Doe', dob: dateValue1});
-      ws.addRow({id: 2, name: 'Jane Doe', dob: dateValue2});
+      ws.addRow({ id: 1, name: 'John Doe', dob: dateValue1 });
+      ws.addRow({ id: 2, name: 'Jane Doe', dob: dateValue2 });
 
       expect(ws.getCell('A2').value).to.equal(1);
       expect(ws.getCell('B2').value).to.equal('John Doe');
@@ -375,16 +375,16 @@ describe('Worksheet', () => {
       ws.addRow([4, 'Jane Doe', dateValue2], 'i');
 
       expect(ws.getCell('A1').font).to.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A2').font).to.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A3').font).not.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A4').font).not.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
     });
 
@@ -394,20 +394,20 @@ describe('Worksheet', () => {
 
       // add columns to define column keys
       ws.columns = [
-        {header: 'Id', key: 'id', width: 10},
-        {header: 'Name', key: 'name', width: 32},
-        {header: 'D.O.B.', key: 'dob', width: 10},
+        { header: 'Id', key: 'id', width: 10 },
+        { header: 'Name', key: 'name', width: 32 },
+        { header: 'D.O.B.', key: 'dob', width: 10 },
       ];
 
       const dateValue1 = new Date(1970, 1, 1);
       const dateValue2 = new Date(1965, 1, 7);
       const dateValue3 = new Date(1965, 1, 10);
 
-      ws.addRow({id: 1, name: 'John Doe', dob: dateValue1});
-      ws.addRow({id: 2, name: 'Jane Doe', dob: dateValue2});
+      ws.addRow({ id: 1, name: 'John Doe', dob: dateValue1 });
+      ws.addRow({ id: 2, name: 'Jane Doe', dob: dateValue2 });
 
       // insert in 3 shifting down earlier
-      ws.insertRow(3, {id: 3, name: 'Other Doe', dob: dateValue3});
+      ws.insertRow(3, { id: 3, name: 'Other Doe', dob: dateValue3 });
 
       expect(ws.getCell('A2').value).to.equal(1);
       expect(ws.getCell('B2').value).to.equal('John Doe');
@@ -561,39 +561,39 @@ describe('Worksheet', () => {
       ws.insertRows(13, arr);
 
       expect(ws.getCell('A1').font).not.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A2').font).not.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A3').font).not.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A4').font).to.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A5').font).to.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A6').font).to.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A9').font).to.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       for (let i = 7; i <= 8; i++) {
         expect(ws.getCell(`A${i}`).font).not.deep.equal(
-          testutils.styles.fonts.comicSansUdB16
+          testutils.styles.fonts.comicSansUdB16,
         );
       }
       for (let i = 10; i <= 12; i++) {
         expect(ws.getCell(`A${i}`).font).to.deep.equal(
-          testutils.styles.fonts.comicSansUdB16
+          testutils.styles.fonts.comicSansUdB16,
         );
       }
       for (let i = 13; i <= 15; i++) {
         expect(ws.getCell(`A${i}`).font).not.deep.equal(
-          testutils.styles.fonts.comicSansUdB16
+          testutils.styles.fonts.comicSansUdB16,
         );
       }
     });
@@ -617,16 +617,16 @@ describe('Worksheet', () => {
       ws.getCell('A3').font = testutils.styles.fonts.arialBlackUI14;
 
       expect(ws.getRow(2).font).not.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getRow(3).font).not.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A2').font).not.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
       expect(ws.getCell('A3').font).not.deep.equal(
-        testutils.styles.fonts.comicSansUdB16
+        testutils.styles.fonts.comicSansUdB16,
       );
     });
 
@@ -644,7 +644,7 @@ describe('Worksheet', () => {
       });
 
       let count = 1;
-      ws.eachRow({includeEmpty: true}, (row, rowNumber) => {
+      ws.eachRow({ includeEmpty: true }, (row, rowNumber) => {
         expect(rowNumber).to.equal(count++);
       });
     });
@@ -665,7 +665,7 @@ describe('Worksheet', () => {
       });
 
       let count = 1;
-      colA.eachCell({includeEmpty: true}, (cell, rowNumber) => {
+      colA.eachCell({ includeEmpty: true }, (cell, rowNumber) => {
         expect(rowNumber).to.equal(count++);
       });
       expect(count).to.equal(7);
@@ -706,7 +706,7 @@ describe('Worksheet', () => {
 
         for (const invalidCharacter of invalidCharacters) {
           expect(() => workbook.addWorksheet(invalidCharacter)).to.throw(
-            `Worksheet name ${invalidCharacter} cannot include any of the following characters: * ? : \\ / [ ]`
+            `Worksheet name ${invalidCharacter} cannot include any of the following characters: * ? : \\ / [ ]`,
           );
         }
       });
@@ -714,11 +714,11 @@ describe('Worksheet', () => {
       it('throws an error', () => {
         const workbook = new ExcelJS.Workbook();
 
-        const invalidNames = ['\'sheetName', 'sheetName\''];
+        const invalidNames = ["'sheetName", "sheetName'"];
 
         for (const invalidName of invalidNames) {
           expect(() => workbook.addWorksheet(invalidName)).to.throw(
-            `The first or last character of worksheet name cannot be a single quotation mark: ${invalidName}`
+            `The first or last character of worksheet name cannot be a single quotation mark: ${invalidName}`,
           );
         }
       });
@@ -792,47 +792,47 @@ describe('Worksheet', () => {
 
     expect(ws.getCell('A1').numFmt).to.equal(testutils.styles.numFmts.numFmt2);
     expect(ws.getCell('A1').font).to.deep.equal(
-      testutils.styles.fonts.comicSansUdB16
+      testutils.styles.fonts.comicSansUdB16,
     );
     expect(ws.getCell('A1').alignment).to.deep.equal(
-      testutils.styles.namedAlignments.middleCentre
+      testutils.styles.namedAlignments.middleCentre,
     );
     expect(ws.getCell('A1').border).to.deep.equal(
-      testutils.styles.borders.thin
+      testutils.styles.borders.thin,
     );
     expect(ws.getCell('A1').fill).to.deep.equal(
-      testutils.styles.fills.redGreenDarkTrellis
+      testutils.styles.fills.redGreenDarkTrellis,
     );
 
     expect(ws.findCell('B1')).to.be.undefined();
 
     expect(ws.getCell('C1').numFmt).to.equal(testutils.styles.numFmts.numFmt2);
     expect(ws.getCell('C1').font).to.deep.equal(
-      testutils.styles.fonts.comicSansUdB16
+      testutils.styles.fonts.comicSansUdB16,
     );
     expect(ws.getCell('C1').alignment).to.deep.equal(
-      testutils.styles.namedAlignments.middleCentre
+      testutils.styles.namedAlignments.middleCentre,
     );
     expect(ws.getCell('C1').border).to.deep.equal(
-      testutils.styles.borders.thin
+      testutils.styles.borders.thin,
     );
     expect(ws.getCell('C1').fill).to.deep.equal(
-      testutils.styles.fills.redGreenDarkTrellis
+      testutils.styles.fills.redGreenDarkTrellis,
     );
 
     // when we 'get' the previously null cell, it should inherit the row styles
     expect(ws.getCell('B1').numFmt).to.equal(testutils.styles.numFmts.numFmt2);
     expect(ws.getCell('B1').font).to.deep.equal(
-      testutils.styles.fonts.comicSansUdB16
+      testutils.styles.fonts.comicSansUdB16,
     );
     expect(ws.getCell('B1').alignment).to.deep.equal(
-      testutils.styles.namedAlignments.middleCentre
+      testutils.styles.namedAlignments.middleCentre,
     );
     expect(ws.getCell('B1').border).to.deep.equal(
-      testutils.styles.borders.thin
+      testutils.styles.borders.thin,
     );
     expect(ws.getCell('B1').fill).to.deep.equal(
-      testutils.styles.fills.redGreenDarkTrellis
+      testutils.styles.fills.redGreenDarkTrellis,
     );
   });
 
@@ -857,47 +857,47 @@ describe('Worksheet', () => {
 
     expect(ws.getCell('A1').numFmt).to.equal(testutils.styles.numFmts.numFmt2);
     expect(ws.getCell('A1').font).to.deep.equal(
-      testutils.styles.fonts.comicSansUdB16
+      testutils.styles.fonts.comicSansUdB16,
     );
     expect(ws.getCell('A1').alignment).to.deep.equal(
-      testutils.styles.namedAlignments.middleCentre
+      testutils.styles.namedAlignments.middleCentre,
     );
     expect(ws.getCell('A1').border).to.deep.equal(
-      testutils.styles.borders.thin
+      testutils.styles.borders.thin,
     );
     expect(ws.getCell('A1').fill).to.deep.equal(
-      testutils.styles.fills.redGreenDarkTrellis
+      testutils.styles.fills.redGreenDarkTrellis,
     );
 
     expect(ws.findRow(2)).to.be.undefined();
 
     expect(ws.getCell('A3').numFmt).to.equal(testutils.styles.numFmts.numFmt2);
     expect(ws.getCell('A3').font).to.deep.equal(
-      testutils.styles.fonts.comicSansUdB16
+      testutils.styles.fonts.comicSansUdB16,
     );
     expect(ws.getCell('A3').alignment).to.deep.equal(
-      testutils.styles.namedAlignments.middleCentre
+      testutils.styles.namedAlignments.middleCentre,
     );
     expect(ws.getCell('A3').border).to.deep.equal(
-      testutils.styles.borders.thin
+      testutils.styles.borders.thin,
     );
     expect(ws.getCell('A3').fill).to.deep.equal(
-      testutils.styles.fills.redGreenDarkTrellis
+      testutils.styles.fills.redGreenDarkTrellis,
     );
 
     // when we 'get' the previously null cell, it should inherit the column styles
     expect(ws.getCell('A2').numFmt).to.equal(testutils.styles.numFmts.numFmt2);
     expect(ws.getCell('A2').font).to.deep.equal(
-      testutils.styles.fonts.comicSansUdB16
+      testutils.styles.fonts.comicSansUdB16,
     );
     expect(ws.getCell('A2').alignment).to.deep.equal(
-      testutils.styles.namedAlignments.middleCentre
+      testutils.styles.namedAlignments.middleCentre,
     );
     expect(ws.getCell('A2').border).to.deep.equal(
-      testutils.styles.borders.thin
+      testutils.styles.borders.thin,
     );
     expect(ws.getCell('A2').fill).to.deep.equal(
-      testutils.styles.fills.redGreenDarkTrellis
+      testutils.styles.fills.redGreenDarkTrellis,
     );
   });
 
@@ -961,7 +961,7 @@ describe('Worksheet', () => {
       const wb = new ExcelJS.Workbook();
       const ws = wb.addWorksheet('blort');
 
-      const expectMaster = function(range, master) {
+      const expectMaster = function (range, master) {
         const d = new Range(range);
         for (let i = d.top; i <= d.bottom; i++) {
           for (let j = d.left; j <= d.right; j++) {
@@ -1052,67 +1052,67 @@ describe('Worksheet', () => {
       ws.mergeCells('B2:C3');
 
       expect(ws.getCell('B2').font).to.deep.equal(
-        testutils.styles.fonts.broadwayRedOutline20
+        testutils.styles.fonts.broadwayRedOutline20,
       );
       expect(ws.getCell('B2').border).to.deep.equal(
-        testutils.styles.borders.doubleRed
+        testutils.styles.borders.doubleRed,
       );
       expect(ws.getCell('B2').fill).to.deep.equal(
-        testutils.styles.fills.blueWhiteHGrad
+        testutils.styles.fills.blueWhiteHGrad,
       );
       expect(ws.getCell('B2').alignment).to.deep.equal(
-        testutils.styles.namedAlignments.middleCentre
+        testutils.styles.namedAlignments.middleCentre,
       );
       expect(ws.getCell('B2').numFmt).to.equal(
-        testutils.styles.numFmts.numFmt1
+        testutils.styles.numFmts.numFmt1,
       );
 
       expect(ws.getCell('B3').font).to.deep.equal(
-        testutils.styles.fonts.broadwayRedOutline20
+        testutils.styles.fonts.broadwayRedOutline20,
       );
       expect(ws.getCell('B3').border).to.deep.equal(
-        testutils.styles.borders.doubleRed
+        testutils.styles.borders.doubleRed,
       );
       expect(ws.getCell('B3').fill).to.deep.equal(
-        testutils.styles.fills.blueWhiteHGrad
+        testutils.styles.fills.blueWhiteHGrad,
       );
       expect(ws.getCell('B3').alignment).to.deep.equal(
-        testutils.styles.namedAlignments.middleCentre
+        testutils.styles.namedAlignments.middleCentre,
       );
       expect(ws.getCell('B3').numFmt).to.equal(
-        testutils.styles.numFmts.numFmt1
+        testutils.styles.numFmts.numFmt1,
       );
 
       expect(ws.getCell('C2').font).to.deep.equal(
-        testutils.styles.fonts.broadwayRedOutline20
+        testutils.styles.fonts.broadwayRedOutline20,
       );
       expect(ws.getCell('C2').border).to.deep.equal(
-        testutils.styles.borders.doubleRed
+        testutils.styles.borders.doubleRed,
       );
       expect(ws.getCell('C2').fill).to.deep.equal(
-        testutils.styles.fills.blueWhiteHGrad
+        testutils.styles.fills.blueWhiteHGrad,
       );
       expect(ws.getCell('C2').alignment).to.deep.equal(
-        testutils.styles.namedAlignments.middleCentre
+        testutils.styles.namedAlignments.middleCentre,
       );
       expect(ws.getCell('C2').numFmt).to.equal(
-        testutils.styles.numFmts.numFmt1
+        testutils.styles.numFmts.numFmt1,
       );
 
       expect(ws.getCell('C3').font).to.deep.equal(
-        testutils.styles.fonts.broadwayRedOutline20
+        testutils.styles.fonts.broadwayRedOutline20,
       );
       expect(ws.getCell('C3').border).to.deep.equal(
-        testutils.styles.borders.doubleRed
+        testutils.styles.borders.doubleRed,
       );
       expect(ws.getCell('C3').fill).to.deep.equal(
-        testutils.styles.fills.blueWhiteHGrad
+        testutils.styles.fills.blueWhiteHGrad,
       );
       expect(ws.getCell('C3').alignment).to.deep.equal(
-        testutils.styles.namedAlignments.middleCentre
+        testutils.styles.namedAlignments.middleCentre,
       );
       expect(ws.getCell('C3').numFmt).to.equal(
-        testutils.styles.numFmts.numFmt1
+        testutils.styles.numFmts.numFmt1,
       );
     });
   });
@@ -1147,7 +1147,7 @@ describe('Worksheet', () => {
         const wb = new ExcelJS.Workbook();
         wb.xlsx
           .readFile(
-            path.resolve(__dirname, 'data', 'hidden-test', `${file}.xlsx`)
+            path.resolve(__dirname, 'data', 'hidden-test', `${file}.xlsx`),
           )
           .then(() => {
             const ws = wb.getWorksheet(1);
@@ -1159,11 +1159,11 @@ describe('Worksheet', () => {
 
             //  Check columns
             expect(ws.getColumn(1).hidden, `${file} : Column 1`).to.equal(
-              false
+              false,
             );
             expect(ws.getColumn(2).hidden, `${file} : Column 2`).to.equal(true);
             expect(ws.getColumn(3).hidden, `${file} : Column 3`).to.equal(
-              false
+              false,
             );
 
             done();

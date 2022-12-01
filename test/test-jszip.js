@@ -22,7 +22,7 @@ fsp
           path,
           entry.name,
           entry._data.compressedSize,
-          entry._data.uncompressedSize
+          entry._data.uncompressedSize,
         );
       }
     });

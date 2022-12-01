@@ -1,14 +1,7 @@
 {
   "extends": "../.eslintrc",
-  "rules": {
-    "no-new": ["off"],
-    "max-len": ["off"],
-    "brace-style": ["off"],
-    "array-bracket-spacing": ["off"],
-    "no-sparse-arrays": ["off"],
-    "object-property-newline": ["off"],
-    "prefer-object-spread": ["off"],
-    "no-underscore-dangle": ["off"]
+  "env": {
+    "mocha": true
   },
   "globals": {
     "verquire": true,
@@ -19,5 +12,8 @@
     "beforeEach": true,
     "afterEach": true,
     "it": true
+  },
+  "rules": {
+    "no-sparse-arrays": ["off"]
   }
 }

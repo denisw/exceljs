@@ -9,8 +9,8 @@ workbook.xlsx
     workbook.eachSheet(worksheet => {
       console.log(
         `Sheet ${worksheet.id} - ${worksheet.name}, Dims=${JSON.stringify(
-          worksheet.dimensions
-        )}`
+          worksheet.dimensions,
+        )}`,
       );
     });
   })

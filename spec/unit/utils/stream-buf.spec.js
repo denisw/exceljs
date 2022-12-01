@@ -19,7 +19,7 @@ describe('StreamBuf', () => {
 
   it('writes StringBuf chunks', () => {
     const stream = new StreamBuf();
-    const strBuf = new StringBuf({size: 64});
+    const strBuf = new StringBuf({ size: 64 });
     strBuf.addText('Hello, World!');
     stream.write(strBuf);
     const chunk = stream.read();
@@ -55,7 +55,7 @@ describe('StreamBuf', () => {
       expect.fail('should fail for given argument');
     } catch (e) {
       expect(e.message).to.equal(
-        'Chunk must be one of type String, Buffer or StringBuf.'
+        'Chunk must be one of type String, Buffer or StringBuf.',
       );
     }
   });

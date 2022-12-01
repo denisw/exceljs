@@ -1,7 +1,7 @@
 const testXformHelper = require('../test-xform-helper');
 
 const OutlinePropertiesXform = verquire(
-  'xlsx/xform/sheet/outline-properties-xform'
+  'xlsx/xform/sheet/outline-properties-xform',
 );
 
 const expectations = [
@@ -20,9 +20,9 @@ const expectations = [
     create() {
       return new OutlinePropertiesXform();
     },
-    preparedModel: {summaryBelow: false},
+    preparedModel: { summaryBelow: false },
     xml: '<outlinePr summaryBelow="0"/>',
-    parsedModel: {summaryBelow: false},
+    parsedModel: { summaryBelow: false },
     tests: ['render', 'renderIn', 'parse'],
   },
   {
@@ -30,9 +30,9 @@ const expectations = [
     create() {
       return new OutlinePropertiesXform();
     },
-    preparedModel: {summaryRight: false},
+    preparedModel: { summaryRight: false },
     xml: '<outlinePr summaryRight="0"/>',
-    parsedModel: {summaryRight: false},
+    parsedModel: { summaryRight: false },
     tests: ['render', 'renderIn', 'parse'],
   },
   {
@@ -40,9 +40,9 @@ const expectations = [
     create() {
       return new OutlinePropertiesXform();
     },
-    preparedModel: {summaryBelow: true, summaryRight: false},
+    preparedModel: { summaryBelow: true, summaryRight: false },
     xml: '<outlinePr summaryBelow="1" summaryRight="0"/>',
-    parsedModel: {summaryBelow: true, summaryRight: false},
+    parsedModel: { summaryBelow: true, summaryRight: false },
     tests: ['render', 'renderIn', 'parse'],
   },
 ];

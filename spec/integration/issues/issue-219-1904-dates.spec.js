@@ -12,7 +12,7 @@ describe('github issues', () => {
 
         const ws = wb.getWorksheet('Sheet1');
         expect(ws.getCell('B4').value.toISOString()).to.equal(
-          '1904-01-01T00:00:00.000Z'
+          '1904-01-01T00:00:00.000Z',
         );
       });
     });
@@ -32,7 +32,7 @@ describe('github issues', () => {
 
           const ws2 = wb2.getWorksheet('Sheet1');
           expect(ws2.getCell('B4').value.toISOString()).to.equal(
-            '1904-01-01T00:00:00.000Z'
+            '1904-01-01T00:00:00.000Z',
           );
         });
     });

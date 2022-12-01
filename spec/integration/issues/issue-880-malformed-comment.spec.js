@@ -16,7 +16,7 @@ describe('github issues', () => {
             useStyles: true,
             useSharedStrings: true,
           })
-          .then(function(buffer) {
+          .then(function (buffer) {
             const wstream = fs.createWriteStream(TEST_XLSX_FILE_NAME);
             wstream.write(buffer);
             wstream.end();

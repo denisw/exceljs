@@ -10,10 +10,10 @@ const now = new Date();
 const today = Date.UTC(
   now.getUTCFullYear(),
   now.getUTCMonth(),
-  now.getUTCDay()
+  now.getUTCDay(),
 );
 
-ws.columns = [{key: 'date', width: 32}, {key: 'number'}, {key: 'word'}];
+ws.columns = [{ key: 'date', width: 32 }, { key: 'number' }, { key: 'word' }];
 
 const words = [
   'Twas',
@@ -41,7 +41,7 @@ ws.addTable({
     showRowStripes: true,
   },
   columns: [
-    {name: 'Date', totalsRowLabel: 'Totally', filterButton: true},
+    { name: 'Date', totalsRowLabel: 'Totally', filterButton: true },
     {
       name: 'Id',
       totalsRowFunction: 'max',
@@ -51,10 +51,10 @@ ws.addTable({
     {
       name: 'Word',
       filterButton: false,
-      style: {font: {bold: true, name: 'Comic Sans MS'}},
+      style: { font: { bold: true, name: 'Comic Sans MS' } },
     },
   ],
-  rows: words.map((word, i) => [new Date(+today + (86400 * i)), i, word]),
+  rows: words.map((word, i) => [new Date(+today + 86400 * i), i, word]),
 });
 
 const stopwatch = new HrStopwatch();
